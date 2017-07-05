@@ -5,7 +5,7 @@ Key requirement
 ## Models:
 - Post -> date:date rationale:text
 x User -> Devise
-- AdminUser -> STI
+x AdminUser -> STI
 
 ## Features:
 - Approval workflow
