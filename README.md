@@ -1,19 +1,22 @@
 ##Overtime App
 
-Key requirement
+Key requirement: company needs documentation that salaried employees did or did not get overtime each week
 
 ## Models:
-- Post -> date:date rationale:text
-x User -> Devise
-x AdminUser -> STI
+-- x Post -> date:date rationale:text
+-- x User -> Devise
+-- x AdminUser -> STI
 
 ## Features:
 - Approval workflow
-- SMS sending -> Link to logtime
+- SMS sending -> Link to approval or overtime input
 - Admin dashboard (Administrate gem)
-- Email summary to Admin users
-- Need documentation for no overtime for auditing.
+- Email summary to managers for approval
+- Need documentation on overtime for audits.
 
 ## UI:
 Bootstrap -> Formatting
+
+## Refactor TODOS:
+- Refactor user association integration test in post spec
 
