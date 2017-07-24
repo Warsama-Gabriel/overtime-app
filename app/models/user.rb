@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :firstname, :lastname, presence: true
 
   has_many :posts
+
+  def fullname
+    "#{self.lastname}, #{self.firstname}".upcase
+  end
 end
