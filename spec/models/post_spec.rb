@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   before do
-    @user = User.create(email: "testmail@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "john", lastname: "snow")
-    @post = Post.create(rationale: "i dids it", date: Date.today, user_id: @user.id)
+    @user = FactoryGirl.create(:user)
+    @post = FactoryGirl.create(:post)
   end
 
   describe "Creation" do

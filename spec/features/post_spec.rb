@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'navigate' do
   before do
-    @user = User.create(email: "testmail@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "john", lastname: "snow")
+    @user = FactoryGirl.create(:user)
     login_as(@user, scope: :user )
   end
 
@@ -19,12 +19,22 @@ describe 'navigate' do
     end
 
     it 'has a list of posts' do
-      post1 = Post.create(rationale: "Post1", date: Date.today, user_id: @user.id)
-      post2 = Post.create(rationale: "Post2", date: Date.today, user_id: @user.id)
+      post1 = FactoryGirl.create(:post)
+      post2 = FactoryGirl.create(:second_post)
       visit posts_path
       #ordering of visit method matters
-      expect(page).to have_content(/Post1|Post2/)
+      expect(page).to have_content(/rationale|content/)
     end
+  end
+
+  describe 'new' do
+    it 'has a link from the homepage' do
+      visit root_path
+      #id of the link
+      click_link("new_post_from_nav")
+      expect(page.status_code).to eq(200)
+    end
+
   end
 
   describe 'creation' do
@@ -53,6 +63,39 @@ describe 'navigate' do
       click_on 'Save'
 
       expect(User.last.posts.last.rationale).to eq('User association')
+    end
+  end
+
+  describe 'edit' do
+    before do
+      @post = FactoryGirl.create(:post)
+    end
+    it 'can be reached by clicking edit on index page' do
+      visit posts_path
+      click_link("edit_#{@post.id}")
+      expect(page.status_code).to eq(200)
+    end
+
+    it 'can be edited' do
+      visit edit_post_path(@post)
+
+      fill_in 'post[rationale]', with: "Issa editable."
+
+      click_on 'Save'
+
+      expect(page).to have_content('Issa editable.')
+    end
+  end
+
+  describe 'delete' do
+    before do
+      @post = FactoryGirl.create(:post)
+    end
+
+    it 'can be deleted' do
+      visit posts_path
+      click_link("delete_post_#{@post.id}_from_index")
+      expect(page.status_code).to eq(200)
     end
   end
 end

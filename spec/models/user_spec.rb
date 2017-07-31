@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   #wrap in block to descibe the type of test
   before do
-    @user = User.create(email: "testmail@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "john", lastname: "snow")
+    @user = FactoryGirl.create(:user)
   end
   describe "creation" do
     it "can be created" do
