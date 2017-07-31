@@ -15,7 +15,9 @@ Key requirement: company needs documentation that salaried employees did or did 
 - Need documentation on overtime for audits.
 
 ## UI:
-- x Bootstrap -> Formatting
+- x Update styles for forms
+- x Add font awesome icons
+
 
 ## Refactor TODOS:
 - Refactor user association integration test in post spec
