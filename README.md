@@ -8,15 +8,17 @@ Key requirement: company needs documentation that salaried employees did or did 
 -- x AdminUser -> STI
 
 ## Features:
-- Approval workflow.
-- SMS sending -> Link to approval or overtime input.
-- Admin dashboard (Administrate gem).
+- Approval workflow
+- SMS sending -> Link to approval or overtime input
+- Administrate admin dashboard
+- Block non admin and guest users
 - Email summary to managers for approval.
 - Need documentation on overtime for audits.
 
 ## UI:
-- x Update styles for forms
-- x Add font awesome icons
+- x Bootstrap -> Formatting
+- Icons from font awesome
+- x Update the styles for forms
 
 
 ## Refactor TODOS:

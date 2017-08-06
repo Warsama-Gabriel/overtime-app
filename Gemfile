@@ -29,6 +29,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'gritter', '~> 1.2'
+gem "administrate"
+gem "bourbon"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -43,6 +45,8 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem "factory_girl_rails", "~> 4.0"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 
