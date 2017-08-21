@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   def post_params
     # require bring in the post model and whitelist the post attr coming in
-    params.require(:post).permit(:rationale, :date)
+    params.require(:post).permit(:rationale, :date, :status)
   end
 
   def set_post

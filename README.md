@@ -28,3 +28,5 @@ Key requirement: company needs documentation that salaried employees did or did 
 Username: testmail@mail.com
 password: asdfasdf
 
+Adminuser: adminuser@mail.com
+password: adminuser
