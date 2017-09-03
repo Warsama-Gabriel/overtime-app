@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 describe 'navigate' do
@@ -67,23 +68,32 @@ describe 'navigate' do
   end
 
   describe 'edit' do
-    before do
-      @post = FactoryGirl.create(:post)
-    end
-    it 'can be reached by clicking edit on index page' do
-      visit posts_path
-      click_link("edit_#{@post.id}")
-      expect(page.status_code).to eq(200)
+   before do
+    # use factories and don't touch the database. Fix post user association
+     @user_1 = User.create(email: "coolmail@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "Kobe", lastname: "Bryant")
+     login_as(@user_1, scope: :user)
+
+     @user_1_post = Post.create(date: Date.today, rationale: "rationale content", user_id: @user_1.id)
     end
 
     it 'can be edited' do
-      visit edit_post_path(@post)
-
+      visit edit_post_path(@user_1_post)
+      fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Issa editable."
 
       click_on 'Save'
 
       expect(page).to have_content('Issa editable.')
+    end
+
+    it 'can not be edited by a non authorized user' do
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
+      puts non_authorized_user.inspect
+      puts @user_1_post.inspect
+      login_as(non_authorized_user, scope: :user)
+      visit edit_post_path(@user_1_post)
+
+      expect(current_path).to eq(root_path)
     end
   end
 
