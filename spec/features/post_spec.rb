@@ -69,7 +69,7 @@ describe 'navigate' do
 
   describe 'edit' do
    before do
-    # use factories and don't touch the database. Fix post user association
+     # use factories and don't touch the database. Fix post user association
      @user_1 = User.create(email: "coolmail@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "Kobe", lastname: "Bryant")
      login_as(@user_1, scope: :user)
 
