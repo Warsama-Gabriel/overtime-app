@@ -13,10 +13,10 @@ FactoryGirl.define do
     user
   end
 
-  # factory :third_post, class: Post do
-  #   date Date.yesterday
-  #   rationale "Some content"
-  #   user2
-  # end
+  factory :third_post, class: Post do
+    date Date.yesterday
+    rationale "Some cool content!"
+    non_authorized_user
+  end
 
 end

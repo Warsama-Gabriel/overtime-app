@@ -21,10 +21,24 @@ describe 'navigate' do
 
     it 'has a list of posts' do
       post1 = FactoryGirl.create(:post)
+      #TODO REFACTOR
+      post1.update!(user_id: @user.id)
       post2 = FactoryGirl.create(:second_post)
+      post2.update!(user_id: @user.id)
+
       visit posts_path
       #ordering of visit method matters
       expect(page).to have_content(/rationale|content/)
+    end
+
+    it 'has a scope so that only post creators can see their posts' do
+      post1 = Post.create(date: Date.today, rationale: "some rationale", user_id: @user.id )
+      post2 = Post.create(date: Date.today, rationale: "some rationale", user_id: @user.id )
+      other_user = User.create(email: "nonauthuser@mail.com", password: "asdfasdf", password_confirmation: "asdfasdf", firstname: "non", lastname: "authorized")
+
+      post3 = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id )
+      visit posts_path
+      expect(page).to_not have_content(/This post shouldn't be seen/)
     end
   end
 
@@ -99,7 +113,9 @@ describe 'navigate' do
 
   describe 'delete' do
     before do
+      #Todo refactor
       @post = FactoryGirl.create(:post)
+      @post.update(user_id: @user.id)
     end
 
     it 'can be deleted' do

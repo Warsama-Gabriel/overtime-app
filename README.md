@@ -25,6 +25,7 @@ Key requirement: company needs documentation that salaried employees did or did 
 - Refactor user association integration test in post spec
 - Refactor form posts for admin users with status
 - Fix post_spec.rb:72
+- Refactor post spec to use correct Factory girl reference
 
 # DEV
 Username: testmail@mail.com
